@@ -2,8 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="parquet">#503214</color>
-    <color name="parquetMedio">#A07850</color>
-    <color name="parquetChiaro">#D2B48C</color>
+    <color name="choose">#FFFFFFFF</color>
+    <color name="parquet">#8B4513</color>
+    <color name="parquetMedio">#A52A2A</color>
+    <color name="parquetChiaro">#D2691E</color>
 
 </resources>

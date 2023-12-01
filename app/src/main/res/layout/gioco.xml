@@ -134,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:text="choose player"
                 android:textSize="@dimen/testo"
+                android:textColor="@color/choose"
                 android:layout_marginTop="80dp"
                 android:layout_centerHorizontal="true"/>
 
@@ -151,6 +152,7 @@
                     android:scaleType="centerInside"
                     android:textSize="@dimen/testo"
                     android:onClick="searchPlayer"
+
                     android:layout_width="@dimen/botton"
                     android:layout_height="@dimen/botton"/>
                 <TextView
@@ -159,6 +161,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -185,6 +188,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -218,6 +222,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -244,6 +249,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -270,6 +276,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -303,6 +310,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -329,6 +337,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -354,6 +363,7 @@
                     android:layout_height="wrap_content"
                     android:text="choose player"
                     android:textSize="@dimen/testo"
+                    android:textColor="@color/choose"
                     android:layout_marginTop="80dp"
                     android:layout_centerHorizontal="true"/>
 
@@ -401,23 +411,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <Button
-            android:text="bo"
-            android:onClick="GetTextFromSQL"
-            android:layout_marginLeft="160dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_above="@+id/ly"
-        android:background="#00FF00"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="invisible"/> <!-- Inizialmente nascondi il ListView -->
 
 
+    <Button
+        android:layout_marginTop="653dp"
+        android:layout_marginLeft="305dp"
+        android:text="BACK"
+        android:textStyle="bold"
+        android:onClick="back"
+        android:textSize="18dp"
+        android:backgroundTint="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"/>
 
 </RelativeLayout>

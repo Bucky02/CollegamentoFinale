@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,7 +41,7 @@ public class Gioco extends AppCompatActivity {
     public static final String PUNT1_KEY = "punt1";
     public static final String PUNT2_KEY = "punt2";
 
-    int WC = 180, HC = 180, WX = 200, HX = 200;
+    int WC = 170, HC = 170, WX = 180, HX = 180;
     int numeroCasuale,numeroCasuale2 ,numeroCasuale3,numeroCasuale4,numeroCasuale5,numeroCasuale6;
 
     LinearLayout ly;
@@ -319,8 +320,8 @@ public class Gioco extends AppCompatActivity {
 
                 String userInput = et.getText().toString();
                 String[] projection = {"nomep"};
-                String selection = "nomep LIKE ?";
-                String[] selectionArgs = new String[]{"%" + userInput + "%"};
+                String selection = "nomep LIKE ? OR nomep LIKE ?";
+                String[] selectionArgs = new String[]{userInput + "%", "% " + userInput + "%"};
                 Cursor cursor = contentResolver.query(CONTENT_URI, projection, selection, selectionArgs, null);
 
                 List<String> resultArray = new ArrayList<>();
@@ -373,19 +374,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                        t1.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t1.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos1Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos1Button.setImageBitmap(resizedBitmap);
                             pos1Button.setClickable(false);
                             pos1Button.setEnabled(false);
                             c1 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos1Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos1Button.setImageBitmap(resizedBitmap);
                             pos1Button.setClickable(false);
                             pos1Button.setEnabled(false);
                             x1 = true;
@@ -412,19 +415,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                         t2.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t2.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos2Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos2Button.setImageBitmap(resizedBitmap);
                             pos2Button.setClickable(false);
                             pos2Button.setEnabled(false);
                             c2 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos2Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos2Button.setImageBitmap(resizedBitmap);
                             pos2Button.setClickable(false);
                             pos2Button.setEnabled(false);
                             x2 = true;
@@ -450,20 +455,22 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                           t3.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t3.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos3Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos3Button.setImageBitmap(resizedBitmap);
                             pos3Button.setClickable(false);
                             pos3Button.setEnabled(false);
                             c3 = true;
                         }
                         else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos3Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos3Button.setImageBitmap(resizedBitmap);
                             pos3Button.setClickable(false);
                             pos3Button.setEnabled(false);
                             x3 = true;
@@ -489,19 +496,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                          t4.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t4.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos4Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos4Button.setImageBitmap(resizedBitmap);
                             pos4Button.setClickable(false);
                             pos4Button.setEnabled(false);
                             c4 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos4Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos4Button.setImageBitmap(resizedBitmap);
                             pos4Button.setClickable(false);
                             pos4Button.setEnabled(false);
                             x4 = true;
@@ -527,19 +536,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                           t5.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t5.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos5Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos5Button.setImageBitmap(resizedBitmap);
                             pos5Button.setClickable(false);
                             pos5Button.setEnabled(false);
                             c5 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos5Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos5Button.setImageBitmap(resizedBitmap);
                             pos5Button.setClickable(false);
                             pos5Button.setEnabled(false);
                             x5 = true;
@@ -565,19 +576,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                           t6.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t6.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos6Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos6Button.setImageBitmap(resizedBitmap);
                             pos6Button.setClickable(false);
                             pos6Button.setEnabled(false);
                             c6 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos6Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos6Button.setImageBitmap(resizedBitmap);
                             pos6Button.setClickable(false);
                             pos6Button.setEnabled(false);
                             x6 = true;
@@ -603,19 +616,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                            t7.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t7.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos7Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos7Button.setImageBitmap(resizedBitmap);
                             pos7Button.setClickable(false);
                             pos7Button.setEnabled(false);
                             c7 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos7Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos7Button.setImageBitmap(resizedBitmap);
                             pos7Button.setClickable(false);
                             pos7Button.setEnabled(false);
                             x7 = true;
@@ -641,19 +656,21 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                          t8.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t8.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos8Button.setImageResource(R.drawable.cerchio);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WC, HC, false);
-
+                            pos8Button.setImageBitmap(resizedBitmap);
                             pos8Button.setClickable(false);
                             pos8Button.setEnabled(false);
                             c8 = true;
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos8Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos8Button.setImageBitmap(resizedBitmap);
                             pos8Button.setClickable(false);
                             pos8Button.setEnabled(false);
                             x8 = true;
@@ -679,9 +696,11 @@ public class Gioco extends AppCompatActivity {
 
                     if (cursor.getCount() >= 2){
                         cancel(view);
-                        t9.setText("");
+                        int firstCommaIndex = selectedItem.indexOf(' ');
+                        String parteDopoSpazio = (firstCommaIndex != -1) ? selectedItem.substring(firstCommaIndex + 1) : selectedItem;
+
+                        t9.setText(parteDopoSpazio);
                         if (turno.getText().toString().equals("P 1's TURN")){
-                            pos9Button.setImageResource(R.drawable.cerchio);
                             pos9Button.setClickable(false);
                             pos9Button.setEnabled(false);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cerchio);
@@ -692,9 +711,9 @@ public class Gioco extends AppCompatActivity {
                             c9 = true;
 
                         } else if (turno.getText().toString().equals("P 2's TURN")) {
-                            pos9Button.setImageResource(R.drawable.x);
                             Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.x);
                             Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, WX, HX, false);
+                            pos9Button.setImageBitmap(resizedBitmap);
                             pos9Button.setClickable(false);
                             pos9Button.setEnabled(false);
                             x9 = true;
@@ -748,6 +767,10 @@ public class Gioco extends AppCompatActivity {
         ly.setVisibility(View.INVISIBLE);
         et.setText("");
         et.setHint("Search Player...");
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+
+
     }
 
 
@@ -889,6 +912,12 @@ public class Gioco extends AppCompatActivity {
         outState.putInt(PUNT2_KEY, PunteggioManager.getPunt2());
     }
 
+
+    public void back(View v){
+        Intent i = new Intent();
+        i.setClass(this, MainActivity.class);
+        startActivityForResult(i, 453);
+    }
 
 
 
