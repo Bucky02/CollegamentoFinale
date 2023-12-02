@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,8 +32,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -50,7 +53,7 @@ public class Gioco extends AppCompatActivity {
     ImageView id1, id2, id3, id4, id5, id6;
     TextView punteggio, turno, t1, t2, t3, t4, t5, t6, t7, t8,t9;
     ContentResolver contentResolver;
-    private boolean pos1 = false,pos2 = false,pos3 = false,pos4 = false,pos5 = false,pos6 = false,pos7 = false, pos8 = false,pos9 = false,c2 = false,c3 = false,c4 = false,c1 = false,c5 = false,c6 = false,c7 = false,c8 = false,c9 = false,x1 = false,x2 = false,x3 = false,x4 = false,x5 = false,x6 = false,x7 = false,x8 = false,x9 = false;
+    private boolean pos1 = false,pos2 = false,pos3 = false,pos4 = false,pos5 = false,pos6 = false,pos7 = false, pos8 = false,pos9 = false,c2 = false,c3 = false,c4 = false,c1 = false,c5 = false,c6 = false,c7 = false,c8 = false,c9 = false,x1 = false,x2 = false,x3 = false,x4 = false,x5 = false,x6 = false,x7 = false,x8 = false,x9 = false,p1 = false,p2 = false,p3 = false,p4 = false,p5 = false,p6 = false,p7 = false,p8 = false,p9 = false;
 
     ArrayList<String> immagini = new ArrayList<>(Arrays.asList(
             "immagine1", "immagine2", "immagine3", "immagine4", "immagine5", "immagine6", "immagine7", "immagine8", "immagine9", "immagine10", "immagine11", "immagine12", "immagine13", "immagine14", "immagine15", "immagine16", "immagine17", "immagine18", "immagine19", "immagine20", "immagine21", "immagine22", "immagine23", "immagine24", "immagine25", "immagine26", "immagine27", "immagine28", "immagine29", "immagine30"));
@@ -158,6 +161,28 @@ public class Gioco extends AppCompatActivity {
         /*String[] dati = {"Elemento 1", "Elemento 2", "Elemento 3"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dati);
         listView.setAdapter(adapter);*/
+
+        String[] projection = {"nomep"};
+        String selection = "id_s IN (?, ?)";
+        String[] selectionArgs = new String[]{String.valueOf(numeroCasuale), String.valueOf(numeroCasuale4)};
+        Cursor cursor = contentResolver.query(CONTENT_URI_2, projection, selection, selectionArgs, null);
+        if (!esisteGiocatore(cursor)){
+            recreate();
+        }
+        String[] projection2 = {"nomep"};
+        String selection2 = "id_s IN (?, ?)";
+        String[] selectionArgs2 = new String[]{String.valueOf(numeroCasuale2), String.valueOf(numeroCasuale5)};
+        Cursor cursor2 = contentResolver.query(CONTENT_URI_2, projection2, selection2, selectionArgs2, null);
+        if (!esisteGiocatore(cursor2)){
+            recreate();
+        }
+        String[] projection3 = {"nomep"};
+        String selection3 = "id_s IN (?, ?)";
+        String[] selectionArgs3 = new String[]{String.valueOf(numeroCasuale3), String.valueOf(numeroCasuale6)};
+        Cursor cursor3 = contentResolver.query(CONTENT_URI_2, projection3, selection3, selectionArgs3, null);
+        if (!esisteGiocatore(cursor3)){
+            recreate();
+        }
 
         pos1Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -394,13 +419,17 @@ public class Gioco extends AppCompatActivity {
                             x1 = true;
 
                         }
+                        p1 = true;
                         verifica();
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
 
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -434,13 +463,16 @@ public class Gioco extends AppCompatActivity {
                             pos2Button.setEnabled(false);
                             x2 = true;
                         }
+                        p2 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -475,13 +507,16 @@ public class Gioco extends AppCompatActivity {
                             pos3Button.setEnabled(false);
                             x3 = true;
                         }
+                        p3 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -515,13 +550,16 @@ public class Gioco extends AppCompatActivity {
                             pos4Button.setEnabled(false);
                             x4 = true;
                         }
+                        p4 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -555,13 +593,16 @@ public class Gioco extends AppCompatActivity {
                             pos5Button.setEnabled(false);
                             x5 = true;
                         }
+                        p5 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -595,13 +636,16 @@ public class Gioco extends AppCompatActivity {
                             pos6Button.setEnabled(false);
                             x6 = true;
                         }
+                        p6 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -635,13 +679,16 @@ public class Gioco extends AppCompatActivity {
                             pos7Button.setEnabled(false);
                             x7 = true;
                         }
+                        p7 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -675,13 +722,16 @@ public class Gioco extends AppCompatActivity {
                             pos8Button.setEnabled(false);
                             x8 = true;
                         }
+                        p8 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -718,13 +768,16 @@ public class Gioco extends AppCompatActivity {
                             pos9Button.setEnabled(false);
                             x9 = true;
                         }
+                        p9 = true;
                         verifica();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.splash);
+                        mediaplayer.start();
                     }
                     else {
                         cancel(view);
                         Toast.makeText(Gioco.this, selectedItem + " non ha giocato in entrambe le squadre ", Toast.LENGTH_SHORT).show();
-
+                        MediaPlayer mediaplayer = MediaPlayer.create(getApplicationContext(), R.raw.bang);
+                        mediaplayer.start();
                     }
                     changePlayer();
                     // Chiudi la tastiera
@@ -838,23 +891,34 @@ public class Gioco extends AppCompatActivity {
     }
 
     public void verifica(){
-        if (c1 == true && c2 == true && c3 == true){ vinto1();}
-        if (c4 == true && c5 == true && c6 == true){ vinto1();}
-        if (c7 == true && c8 == true && c9 == true){ vinto1();}
-        if (c1 == true && c5 == true && c9 == true){ vinto1();}
-        if (c3 == true && c5 == true && c7 == true){ vinto1();}
-        if (c1 == true && c4 == true && c7 == true){ vinto1();}
-        if (c2 == true && c5 == true && c8 == true){ vinto1();}
-        if (c3 == true && c6 == true && c9 == true){ vinto1();}
+        if (c1 == true && c2 == true && c3 == true){ vinto1(); return;}
+        if (c4 == true && c5 == true && c6 == true){ vinto1();return;}
+        if (c7 == true && c8 == true && c9 == true){ vinto1();return;}
+        if (c1 == true && c5 == true && c9 == true){ vinto1();return;}
+        if (c3 == true && c5 == true && c7 == true){ vinto1();return;}
+        if (c1 == true && c4 == true && c7 == true){ vinto1();return;}
+        if (c2 == true && c5 == true && c8 == true){ vinto1();return;}
+        if (c3 == true && c6 == true && c9 == true){ vinto1();return;}
 
-        if (x1 == true && x2 == true && x3 == true){ vinto2();}
-        if (x4 == true && x5 == true && x6 == true){ vinto2();}
-        if (x7 == true && x8 == true && x9 == true){ vinto2();}
-        if (x1 == true && x5 == true && x9 == true){ vinto2();}
-        if (x3 == true && x5 == true && x7 == true){ vinto2();}
-        if (x1 == true && x4 == true && x7 == true){ vinto2();}
-        if (x2 == true && x5 == true && x8 == true){ vinto2();}
-        if (x3 == true && x6 == true && x9 == true){ vinto2();}
+        if (x1 == true && x2 == true && x3 == true){ vinto2();return;}
+        if (x4 == true && x5 == true && x6 == true){ vinto2();return;}
+        if (x7 == true && x8 == true && x9 == true){ vinto2();return;}
+        if (x1 == true && x5 == true && x9 == true){ vinto2();return;}
+        if (x3 == true && x5 == true && x7 == true){ vinto2();return;}
+        if (x1 == true && x4 == true && x7 == true){ vinto2();return;}
+        if (x2 == true && x5 == true && x8 == true){ vinto2();return;}
+        if (x3 == true && x6 == true && x9 == true){ vinto2();return;}
+
+        if (p1 == true && p2 == true && p3 == true && p4 == true && p5 == true && p6 == true && p7 == true && p8 == true && p9 == true){
+            Toast.makeText(Gioco.this, "TIE", Toast.LENGTH_SHORT).show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    recreate();
+                }
+            }, 3000);}
 
     }
 
@@ -919,7 +983,38 @@ public class Gioco extends AppCompatActivity {
         startActivityForResult(i, 453);
     }
 
+    public boolean esisteGiocatore(Cursor cursor) {
+        if (cursor == null || cursor.getCount() == 0) {
+            // Non ci sono giocatori nel cursore
+            return false;
+        }
+        HashMap<String, Integer> giocatoriCountMap = new HashMap<>();
 
+        // Scorrere il cursore e contare le occorrenze di ciascun giocatore
+        cursor.moveToFirst();
+        do {
+            @SuppressLint("Range") String cognome = cursor.getString(cursor.getColumnIndex("nomep")); // Sostituire con il nome corretto della colonna del cognome
+
+            // Aggiornare il conteggio nel HashMap
+            int count = 0;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                count = giocatoriCountMap.getOrDefault(cognome, 0);
+            }
+            giocatoriCountMap.put(cognome, count + 1);
+
+        } while (cursor.moveToNext());
+
+        // Verificare se almeno un giocatore si ripete almeno due volte
+        for (Map.Entry<String, Integer> entry : giocatoriCountMap.entrySet()) {
+            if (entry.getValue() >= 2) {
+                // Ci sono giocatori che si ripetono almeno due volte
+                return true;
+            }
+        }
+
+        // Nessun giocatore si ripete almeno due volte
+        return false;
+    }
 
 
 
